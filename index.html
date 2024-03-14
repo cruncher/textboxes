@@ -50,6 +50,7 @@
         padding: 0.3rem;
         /* Remove resize handle from textarea */
         resize: none;
+        height: 5.1rem;
     }
 
     * + textarea {
@@ -72,6 +73,12 @@
         line-clamp: 3;
         max-height: 5.1rem;
     }
+
+    small {
+        margin-top: 0.5rem;
+        display: block;
+        font-size: 0.8em;
+    }
     </style>
 </head>
 
@@ -79,6 +86,7 @@
     <section class="x1 y1 x-stretch">
         <pre>textarea</pre>
         <textarea>Crunchum ipsum dolor text character count 45↵ c50↵ sit coder void, text 75↵ c80↵ void, constructor function, sed do while loop python orientation semi colon incident. Duis aute irure indent tabs or spaces velit esse cilium buntum how crunchy duntum. Excepteur tranquilis syntax error memorandum qui officia nostrud operating system alertus.</textarea>
+        <small>Textareas require a fixed height, this will not auto-expand</small>
     </section>
 
     <section class="x1 y2 x-stretch">
@@ -94,6 +102,7 @@
     <section class="x2 y1 x-stretch">
         <pre>p</pre>
         <p>Crunchum ipsum dolor text character count 45↵ c50↵ sit coder void, text 75↵ c80↵ void, constructor function, sed do while loop python orientation semi colon incident. Duis aute irure indent tabs or spaces velit esse cilium buntum how crunchy duntum. Excepteur tranquilis syntax error memorandum qui officia nostrud operating system alertus.</p>
+        <small>Paragraphs do auto-expand</small>
     </section>
 
     <section class="x2 y2 x-stretch">
@@ -104,12 +113,13 @@
     <section class="x2 y3 x-stretch">
         <pre>p[contenteditable="plaintext-only"], line-clamp</pre>
         <p class="line-clamp" contenteditable="plaintext-only">Crunchum ipsum dolor text character count 45↵ c50↵ sit coder void, text 75↵ c80↵ void, constructor function, sed do while loop python orientation semi colon incident. Duis aute irure indent tabs or spaces velit esse cilium buntum how crunchy duntum. Excepteur tranquilis syntax error memorandum qui officia nostrud operating system alertus.</p>
-        <a href="https://caniuse.com/mdn-html_global_attributes_contenteditable_plaintext-only" style="margin-top: 0.5rem; display: block; font-size: 0.8em;"><code>contenteditable="plaintext-only"</code> not available on FF</a>
+        <small style="margin-top: 0.5rem; display: block;"><code>contenteditable="plaintext-only"</code> <a href="https://caniuse.com/mdn-html_global_attributes_contenteditable_plaintext-only">not available in FF</a></small>
     </section>
 
     <section class="x2 y4 x-stretch">
         <pre>p[contenteditable], line-clamp, scroll-reset</pre>
         <p class="line-clamp scroll-reset" contenteditable>Crunchum ipsum dolor text character count 45↵ c50↵ sit coder void, text 75↵ c80↵ void, constructor function, sed do while loop python orientation semi colon incident. Duis aute irure indent tabs or spaces velit esse cilium buntum how crunchy duntum. Excepteur tranquilis syntax error memorandum qui officia nostrud operating system alertus.</p>
+        <small style="margin-top: 0.5rem; display: block;">In Safari, click-drag down exposes additional lines</small>
     </section>
 
     <script type="module">
