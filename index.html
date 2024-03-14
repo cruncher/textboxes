@@ -28,13 +28,12 @@
     @import './bolt/classes/text.css';
 
     body {
-        font-size: 1.125rem;
-        line-height: 1.5rem;
+        line-height: 1.5em;
         padding: 1.5rem;
     }
 
     p {
-        padding: 0.3rem;
+        padding: 0.3em;
         box-shadow: 0 0 0 1px #cccccc;
     }
 
@@ -47,10 +46,10 @@
         font-family: inherit;
         font-size: inherit;
         line-height: inherit;
-        padding: 0.3rem;
+        padding: 0.3em;
         /* Remove resize handle from textarea */
         resize: none;
-        height: 5.1rem;
+        height: 5.1em;
     }
 
     * + textarea {
@@ -71,18 +70,24 @@
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         line-clamp: 3;
-        max-height: 5.1rem;
+        max-height: 5.1em;
+    }
+
+    pre, input {
+        font-size: 16px;
+        line-height: 1.5rem;
     }
 
     small {
         margin-top: 0.5rem;
         display: block;
-        font-size: 0.8em;
+        font-size: 14px;
+        line-height: 1.5rem;
     }
     </style>
 </head>
 
-<body class="3x-grid grid">
+<body class="3x-grid grid" style="font-size: 18px;">
     <section class="x1 y1 x-stretch">
         <pre>textarea</pre>
         <textarea>Crunchum ipsum dolor text character count 45↵ c50↵ sit coder void, text 75↵ c80↵ void, constructor function, sed do while loop python orientation semi colon incident. Duis aute irure indent tabs or spaces velit esse cilium buntum how crunchy duntum. Excepteur tranquilis syntax error memorandum qui officia nostrud operating system alertus.</textarea>
@@ -122,6 +127,11 @@
         <small style="margin-top: 0.5rem; display: block;">In Safari, click-drag down exposes additional lines</small>
     </section>
 
+    <form class="x3 y1 4y x-stretch sticky">
+        <pre>font-size</pre>
+        <input type="range" min="12" max="64" step="any" value="18" id="font-size" />
+    </form>
+
     <script type="module">
         import events from './dom/modules/events.js';
         //events('cut copy paste input change keypress keydown keyup', document).each((e) => console.log(e.type, e));
@@ -134,6 +144,10 @@
             e.target.scrollTop = 0;
             requestAnimationFrame(() => e.target.scrollTop = 0);
             console.log(e.type, e);
+        });
+
+        events('input', document.getElementById('font-size')).each((e) => {
+            document.body.style.fontSize = e.target.value + 'px';
         });
     </script>
 </body>
