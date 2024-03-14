@@ -1,0 +1,9 @@
+[submodule "bolt"]
+	path = bolt
+	url = git@github.com:stephband/bolt-2
+[submodule "fn"]
+	path = fn
+	url = git@github.com:stephband/fn
+[submodule "dom"]
+	path = dom
+	url = git@github.com:stephband/dom
