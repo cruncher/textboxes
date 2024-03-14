@@ -30,6 +30,7 @@
     body {
         line-height: 1.5em;
         padding: 1.5rem;
+        background-color: #eeeeee;
     }
 
     p {
@@ -41,6 +42,10 @@
         margin-top: 0.5rem !important;
     }
 
+    textarea, p {
+        background-color: white;
+    }
+
     textarea {
         width: 100%;
         font-family: inherit;
@@ -50,6 +55,7 @@
         /* Remove resize handle from textarea */
         resize: none;
         height: 5.1em;
+        border-color: #cccccc;
     }
 
     * + textarea {
@@ -90,40 +96,40 @@
 <body class="3x-grid grid" style="font-size: 18px;">
     <section class="x1 y1 x-stretch">
         <pre>textarea</pre>
-        <textarea>Crunchum ipsum dolor text character count 45↵ c50↵ sit coder void, text 75↵ c80↵ void, constructor function, sed do while loop python orientation semi colon incident. Duis aute irure indent tabs or spaces velit esse cilium buntum how crunchy duntum. Excepteur tranquilis syntax error memorandum qui officia nostrud operating system alertus.</textarea>
+        <textarea>Crunchum ipsum dolor, constructor function, sed do while loop python orientation semi colon incident.</textarea>
         <small>Textareas require a fixed height, this will not auto-expand</small>
     </section>
 
     <section class="x1 y2 x-stretch">
         <pre>textarea, line-clamp</pre>
-        <textarea class="line-clamp">Crunchum ipsum dolor text character count 45↵ c50↵ sit coder void, text 75↵ c80↵ void, constructor function, sed do while loop python orientation semi colon incident. Duis aute irure indent tabs or spaces velit esse cilium buntum how crunchy duntum. Excepteur tranquilis syntax error memorandum qui officia nostrud operating system alertus.</textarea>
+        <textarea class="line-clamp">Crunchum ipsum dolor, constructor function, sed do while loop python orientation semi colon incident.</textarea>
     </section>
 
     <section class="x1 y3 x-stretch">
         <pre>textarea, line-clamp, scroll-reset</pre>
-        <textarea class="line-clamp scroll-reset">Crunchum ipsum dolor text character count 45↵ c50↵ sit coder void, text 75↵ c80↵ void, constructor function, sed do while loop python orientation semi colon incident. Duis aute irure indent tabs or spaces velit esse cilium buntum how crunchy duntum. Excepteur tranquilis syntax error memorandum qui officia nostrud operating system alertus.</textarea>
+        <textarea class="line-clamp scroll-reset">Crunchum ipsum dolor, constructor function, sed do while loop python orientation semi colon incident.</textarea>
     </section>
 
     <section class="x2 y1 x-stretch">
         <pre>p</pre>
-        <p>Crunchum ipsum dolor text character count 45↵ c50↵ sit coder void, text 75↵ c80↵ void, constructor function, sed do while loop python orientation semi colon incident. Duis aute irure indent tabs or spaces velit esse cilium buntum how crunchy duntum. Excepteur tranquilis syntax error memorandum qui officia nostrud operating system alertus.</p>
+        <p>Crunchum ipsum dolor, constructor function, sed do while loop python orientation semi colon incident.</p>
         <small>Paragraphs do auto-expand</small>
     </section>
 
     <section class="x2 y2 x-stretch">
         <pre>p[contenteditable], line-clamp</pre>
-        <p class="line-clamp" contenteditable>Crunchum ipsum dolor text character count 45↵ c50↵ sit coder void, text 75↵ c80↵ void, constructor function, sed do while loop python orientation semi colon incident. Duis aute irure indent tabs or spaces velit esse cilium buntum how crunchy duntum. Excepteur tranquilis syntax error memorandum qui officia nostrud operating system alertus.</p>
+        <p class="line-clamp" contenteditable>Crunchum ipsum dolor, constructor function, sed do while loop python orientation semi colon incident.</p>
     </section>
 
     <section class="x2 y3 x-stretch">
         <pre>p[contenteditable="plaintext-only"], line-clamp</pre>
-        <p class="line-clamp" contenteditable="plaintext-only">Crunchum ipsum dolor text character count 45↵ c50↵ sit coder void, text 75↵ c80↵ void, constructor function, sed do while loop python orientation semi colon incident. Duis aute irure indent tabs or spaces velit esse cilium buntum how crunchy duntum. Excepteur tranquilis syntax error memorandum qui officia nostrud operating system alertus.</p>
+        <p class="line-clamp" contenteditable="plaintext-only">Crunchum ipsum dolor, constructor function, sed do while loop python orientation semi colon incident.</p>
         <small style="margin-top: 0.5rem; display: block;"><code>contenteditable="plaintext-only"</code> <a href="https://caniuse.com/mdn-html_global_attributes_contenteditable_plaintext-only">not available in FF</a></small>
     </section>
 
     <section class="x2 y4 x-stretch">
         <pre>p[contenteditable], line-clamp, scroll-reset</pre>
-        <p class="line-clamp scroll-reset" contenteditable>Crunchum ipsum dolor text character count 45↵ c50↵ sit coder void, text 75↵ c80↵ void, constructor function, sed do while loop python orientation semi colon incident. Duis aute irure indent tabs or spaces velit esse cilium buntum how crunchy duntum. Excepteur tranquilis syntax error memorandum qui officia nostrud operating system alertus.</p>
+        <p class="line-clamp scroll-reset" contenteditable>Crunchum ipsum dolor, constructor function, sed do while loop python orientation semi colon incident.</p>
         <small style="margin-top: 0.5rem; display: block;">In Safari, click-drag down exposes additional lines</small>
     </section>
 
@@ -143,7 +149,19 @@
         .each((e) => {
             e.target.scrollTop = 0;
             requestAnimationFrame(() => e.target.scrollTop = 0);
-            console.log(e.type, e);
+            console.log(e.type);
+        });
+
+        events({
+            type: 'focusout',
+            select: '.scroll-reset'
+        }, document)
+        .each((e) => {
+            // Truncate to height
+            console.log(e.type);
+            while (e.target.scrollHeight > e.target.clientHeight) {
+                e.target.textContent = e.target.textContent.slice(0, -1)
+            }
         });
 
         events('input', document.getElementById('font-size')).each((e) => {
